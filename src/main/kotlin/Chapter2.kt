@@ -2,7 +2,7 @@ fun fib(n: Int): Int {
 
     tailrec fun go(a: Int, b: Int, n: Int): Int {
         return if (n == 0) a
-        else go(b, a+b, n-1)
+        else go(b, a + b, n - 1)
     }
 
     return go(0, 1, n)
@@ -21,3 +21,6 @@ fun <A> isSorted(aa: List<A>, order: (A, A) -> Boolean): Boolean {
 
     return go(aa.head, aa.tail, order)
 }
+
+fun <A, B, C> curry(f: (A, B) -> C): (A) -> (B) -> C =
+    { a: A -> { b: B -> f(a, b) } }
