@@ -9,3 +9,15 @@ fun fib(n: Int): Int {
 }
 
 
+val <T> List<T>.tail: List<T>
+    get() = drop(1)
+val <T> List<T>.head: T
+    get() = first()
+
+fun <A> isSorted(aa: List<A>, order: (A, A) -> Boolean): Boolean {
+    fun <A> go(head: A, tail: List<A>, order: (A, A) -> Boolean): Boolean {
+        return tail.isEmpty() || (order(head, tail.head) && go(tail.head, tail.tail, order))
+    }
+
+    return go(aa.head, aa.tail, order)
+}
